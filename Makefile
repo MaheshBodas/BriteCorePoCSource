@@ -15,8 +15,8 @@ fixtures:
 britecorepocui/node_modules:
 	npm --prefix=./BriteCorePOCUI install
 
-britecorepocui-dist: client/node_modules
-	npm --prefix=./client run build
+britecorepocui-dist: britecorepocui/node_modules
+	npm --prefix=./britecorepocui run build
 
 britecorepocapi-dev:
 	./BriteCorePOCAPI/manage.py runserver --settings=server.settings
