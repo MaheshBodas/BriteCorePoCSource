@@ -1,0 +1,1 @@
+web: gunicorn BriteCorePOCAPI.wsgi --log-file -
