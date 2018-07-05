@@ -1,0 +1,52 @@
+Salient feaures of Risk API
+
+solution that allows insurers to define their own custom data model for their risks. There are no database tables called automobiles, houses, or prizes. Instead, insurers will be able to create their own risk types and attach as many different fields as they would like.
+
+Fields are bits of data like first name, age, zip code, model, serial number, Coverage A limit, or prize dollar amount. Basically any data the carrier would want to collect about the risk. Fields can also be of different types, like text, date, number, currency, and so forth.
+
+As risk field types are user defined and not commited at time of table creation. Actual field/column value stored in table is string type. But field type sanctity is enforced using model validators. i.e User can not supply Date value where Currency is expected.
+ 
+Uniqness among RiskType names is maintained by enforcing unique constrain. But enforcing unique risk field name in similar fashion is somewhat restrictive and naive. I have tried to maintain unique field name within Risk Types and not across all Risk Type using mode validators.
+
+During risk and risk field creation  system checks that proper referential integrity is maintained among Risk Type and Risks. Risk Fields ensures that proper referential integrity is maintained with Risk Type and Risk Type fields.
+
+Risk API allows users to create RiskTypes and associated RiskTypeFields in one go with use of nested serializer.
+
+Risk API allows users to create Risk and associated RiskFields in one go with use of nested serializer.
+
+Various model validation errors within RiskType and RiskTypeFields, Risk and RiskFields are returned to client of RiskAPI in JSON format.
+
+Risk and RiskFields carry extra metadata related to RiskType and RiskTypeFields.
+
+On authentication front, only authenticated users can access RiskAPI. Role based authorization further enable only admin users to create/delete RiskType. Non admin users only have list and details option for RiskTypes. However they can create Risk instances based on RiskTypes.
+
+Session authentication is used for browsable API that runs within same session that of Web API
+
+Token authentication is used for seperate website that access Web API for retrieving and creating RiskTypes and Risk.
+
+Used Default router to list all available links and Pastebin docs ande schema information available.
+
+One touch Heroku deploy button.
+
+
+
+
+
+=========================================================================================================================
+
+BriteCorePoC UI.
+
+1. Developed using Vue JS, ES6, Element UI library, Node JS, Express server.
+2. Only authenticated users can login and access system. Token based authetication scheme is used.
+3. Role based authorization further limits access to screens and components use for creating RiskTypes.
+4. Well thought Vue components to modularize code.
+4. Each form has rotating help message display that shows how to use screen and detail steps involved.
+5. User can define and post RiskType and RiskTypeFields in one go using header and details table.
+6. User can define and post Risk and RiskFields in one go using header and details table.
+7. Create Risk Instance screen collect data by dynamically adding controls for associated various Risk type fields.
+8. Create Risk Instance screen dynamically adds required field validation and field type specific validation for controls associated with various Risk type fields. i.e. Date / float / integer.
+9. View Single Risk allows user to fetch details for given Risk and renders various readonly controls related to Risk Type fields.
+10. Used Vuex store mutations and action methods. Appropriate use of Getters for sharing Vuex store with components.
+11. Used Vue router from login and navigation within various forms within WebSite.
+12. Successful model creation messages are displayed using MessageBox.
+13 Display various model validation errors using MessageBox
